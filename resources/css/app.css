@@ -1,0 +1,6 @@
+@import '/resources/sass/main.sass';
+@import '/resources/sass/tailwind.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
