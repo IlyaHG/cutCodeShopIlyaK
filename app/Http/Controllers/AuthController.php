@@ -33,7 +33,7 @@ class AuthController extends Controller
 
 		$user = User::create($data);
 
-		dd($data);
+		dd($user);
 
 		
 	}
