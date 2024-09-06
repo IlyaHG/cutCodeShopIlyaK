@@ -33,7 +33,7 @@
 				</li>
 			</ul>
 			<div class="space-y-3 mt-5">
-				<div class="text-xxs md:text-xs">Есть аккаунт? <a href="{{route('showLogin')}}" class="text-white hover:text-white/70 font-bold underline underline-offset-4">Войти</a></div>
+				<div class="text-xxs md:text-xs">Есть аккаунт? <a href="{{route('login')}}" class="text-white hover:text-white/70 font-bold underline underline-offset-4">Войти</a></div>
 			</div>
 			<ul class="flex flex-col md:flex-row justify-between gap-3 md:gap-4 mt-14 md:mt-20">
 				<li>
