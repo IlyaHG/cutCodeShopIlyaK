@@ -13,16 +13,18 @@ Route::middleware('auth')->group(function () {
 Route::controller(AuthController::class)->group(function () {
 		// auth
 
-		Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-		Route::post('/login-process', [AuthController::class, 'login'])->name('loginProcess');
+		Route::get('/login',  'showLogin')->name('login');
+		Route::post('/login-process',  'login')->name('loginProcess');
 	
 		// register
-		Route::get('/register', [AuthController::class, 'showRegister'])->name('showRegister');
-		Route::post('/register-process', [AuthController::class, 'register'])->name('registerProcess');
+		Route::get('/register', 'showRegister')->name('showRegister');
+		Route::post('/register-process', 'register')->name('registerProcess');
 	
 		// forgot password 
-		Route::get('/forgot-password', [AuthController::class,'showForgotPassword'])->name('showForgotPassword');
-		Route::post('/forgot-password',[AuthController::class,'forgotPasswordProcess'])->name('password.email');
+		Route::get('/forgot-password', 'showForgotPassword')->middleware('guest')->name('password.request');
+		Route::post('/forgot-password', 'forgotPassword')->middleware('guest')->name('password.email');
+		Route::get('/reset-password/{token}', 'showResetPassword')->middleware('guest')->name('password.reset');
+		Route::post('/reset-password', 'resetPassword')->middleware('guest')->name('password.update');
 	
 });
 

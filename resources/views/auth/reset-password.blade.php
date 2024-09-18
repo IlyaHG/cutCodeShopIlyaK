@@ -1,7 +1,7 @@
 @extends('layout.unauth-layout')
 @section('title', 'Забыли пароль')
 @section('content')
-    <x-forms.auth-forms title="Восстановление пароля" action="">
+    <x-forms.auth-forms title="Восстановление пароля" action="{{route('')}}">
 
         <x-forms.text-input name="email" required="true" placeholder="Email" :isError="$errors->has('email')" />
         <x-forms.text-input name="password" type="password" required="true" placeholder="Пароль" :isError="$errors->has('password')" />
