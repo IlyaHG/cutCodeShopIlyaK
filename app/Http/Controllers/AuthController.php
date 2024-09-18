@@ -86,6 +86,7 @@ class AuthController extends Controller
 
 	public function forgotPassword(ForgotPasswordFormRequest $request): RedirectResponse
 	{
+		
 		$status = Password::sendResetLink(
 			$request->only('email')
 		);
@@ -100,7 +101,6 @@ class AuthController extends Controller
 
 	public function resetPassword(ResetPasswordFormRequest $request): RedirectResponse
 	{
-
 		$status = Password::reset(
 			$request->only('email', 'password', 'password_confirmation', 'token'),
 			function (User $user, string $password) {
@@ -113,7 +113,6 @@ class AuthController extends Controller
 				event(new PasswordReset($user));
 			}
 		);
-
 		return $status === Password::PASSWORD_RESET
 			? redirect()->route('login')->with('status', __($status))
 			: back()->withErrors(['email' => [__($status)]]);

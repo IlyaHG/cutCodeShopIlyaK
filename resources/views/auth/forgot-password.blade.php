@@ -1,7 +1,13 @@
 @extends('layout.unauth-layout')
 @section('title', 'Забыли пароль')
 @section('content')
-    <x-forms.auth-forms title="Забыли пароль" action="{{route('password.email')}}" method="POST">
+
+
+
+    <x-forms.auth-forms 
+	title="Забыли пароль" 
+	action="{{route('password.email')}}" 
+	method="POST">
 
         <x-forms.text-input name="email" required="true" placeholder="Email" :isError="$errors->has('email')" value="{{old('email')}}" />
 

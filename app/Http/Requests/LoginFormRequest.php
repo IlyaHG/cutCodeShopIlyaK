@@ -22,7 +22,7 @@ class LoginFormRequest extends FormRequest
 		// email:dns
         return [
 			'email' => 'required|email|string',
-			'password' => 'required|min:5',
+			'password' => 'required|min:4',
         ];
     }
 }
