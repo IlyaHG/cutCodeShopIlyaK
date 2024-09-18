@@ -1,16 +1,26 @@
 @extends('layout.unauth-layout')
 
-@section('title', 'Вход в аккаунт')
+@section('title', 'Регистрация')
 @section('content')
-    <x-forms.auth-forms title="Вход в аккаунт" action="{{route('loginProcess')}}" method="POST">
+    <x-forms.auth-forms title="Регистрация" action="{{route('registerProcess')}}" method="POST">
 		@csrf
-
         <x-forms.text-input 
 		name="email" 
+		type="email" 
 		required="true" 
 		placeholder="Email" 
+		:isError="$errors->has('email')" 
 		value="{{old('email')}}"
-		:isError="$errors->has('email')" />
+		/>
+
+        <x-forms.text-input 
+		name="name" 
+		required="true"
+		type="text" 
+		placeholder="Имя" 
+		:isError="$errors->has('name')" 
+		value="{{old('name')}}"
+		/>
 
         @error('email')
             <x-forms.error>
@@ -19,19 +29,39 @@
         @enderror
 
         <x-forms.text-input 
-		name="password"
-		type="password" 
+		name="password" 
+		type="password"  
 		required="true" 
-		placeholder="Password" 
-		:isError="$errors->has('email')" />
+		placeholder="Пароль" 
+		:isError="$errors->has('password')" 
+		/>
 
+		@error('password')
+		<x-forms.error>
+			{{ $message }}
+		</x-forms.error>
+		@enderror
+
+		<x-forms.text-input 
+		name="password_confirmation" 
+		type="password"  
+		required="true" 
+		placeholder="Повторите пароль" 
+		:isError="$errors->has('password')" 
+		/>
+
+		@error('password_confirmation')
+		<x-forms.error>
+			{{ $message }}
+		</x-forms.error>
+		@enderror
 
         <x-forms.primary-button>
-            Войти
+            Зарегистрироваться
         </x-forms.primary-button>
 
         <x-slot:socialAuth>
-            <ul class="space-x-3 mx-5 mt-3">
+            <ul class="space-x-3 my-2 mt-3">
 				<li>
 					<a href="#" class="relative flex items-center h-14 px-12 rounded-lg border border-[#A07BF0] bg-white/20 hover:bg-white/20 active:bg-white/10 active:translate-y-0.5">
 						<svg class="shrink-0 absolute left-4 w-5 sm:w-6 h-5 sm:h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -45,10 +75,8 @@
 
         <x-slot:buttons>
             <div class="space-y-3 mt-5">
-                <div class="text-xxs md:text-xs"><a href="{{ route('password.request') }}"
-                        class="text-white hover:text-white/70 font-bold">Забыли пароль?</a></div>
-                <div class="text-xxs md:text-xs"><a href="{{ route('showRegister') }}"
-                        class="text-white hover:text-white/70 font-bold">Регистрация</a></div>
+                <div class="text-xxs md:text-xs"><a href="{{ route('login') }}"
+                        class="text-white hover:text-white/70 font-bold">Войти в аккаунт</a></div>
             </div>
         </x-slot:buttons>
     </x-forms.auth-forms>
