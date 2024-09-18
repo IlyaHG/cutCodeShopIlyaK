@@ -5,7 +5,7 @@
 ])
 
 
-<input {{$attributes
+<input type="{{ $type }}" {{$attributes
 ->class([
 	'_is-error' => $isError,
 	'w-full h-14 px-4 rounded-lg border 

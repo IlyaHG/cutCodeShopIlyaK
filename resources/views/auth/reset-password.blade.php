@@ -1,10 +1,27 @@
 @extends('layout.unauth-layout')
 @section('title', 'Забыли пароль')
 @section('content')
-    <x-forms.auth-forms title="Забыли пароль" action="" method="POST">
+    <x-forms.auth-forms title="Восстановление пароля" action="">
 
-        <x-forms.text-input name="email" required="true" placeholder="Email" :isError="$errors->has('email')" value="{{old('email')}}" />
-        <x-forms.primary-button> Отправить </x-forms.primary-button>
+        <x-forms.text-input name="email" required="true" placeholder="Email" :isError="$errors->has('email')" />
+        <x-forms.text-input name="password" type="password" required="true" placeholder="Пароль" :isError="$errors->has('password')" />
+
+        @error('password')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+        @enderror
+
+        <x-forms.text-input name="password_confirmation" type="password" required="true" placeholder="Повторите пароль"
+            :isError="$errors->has('password')" />
+
+        @error('password_confirmation')
+            <x-forms.error>
+                {{ $message }}
+            </x-forms.error>
+        @enderror
+
+        <x-forms.primary-button> Обновить пароль </x-forms.primary-button>
         <x-slot:socialAuth>
             <ul class="space-x-3 mx-5 mt-3">
                 <li>
@@ -23,12 +40,7 @@
         </x-slot:socialAuth>
 
         <x-slot:buttons>
-            <div class="space-y-3 mt-5">
-				<div class="text-xxs md:text-xs"><a href="{{ route('login') }}"
-					class="text-white hover:text-white/70 font-bold">Вспомнил пароль</a></div>
-                <div class="text-xxs md:text-xs"><a href="{{ route('showRegister') }}"
-                        class="text-white hover:text-white/70 font-bold">Регистрация</a></div>
-            </div>
+
         </x-slot:buttons>
     </x-forms.auth-forms>
 @endsection

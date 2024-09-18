@@ -2,7 +2,7 @@
 
 @section('title', 'Регистрация')
 @section('content')
-    <x-forms.auth-forms title="Регистрация" action="{{route('registerProcess')}}">
+    <x-forms.auth-forms title="Регистрация" action="{{route('registerProcess')}}" method="POST">
 		@csrf
         <x-forms.text-input 
 		name="email" 
@@ -10,6 +10,7 @@
 		required="true" 
 		placeholder="Email" 
 		:isError="$errors->has('email')" 
+		value="{{old('email')}}"
 		/>
 
         <x-forms.text-input 
@@ -18,6 +19,7 @@
 		type="text" 
 		placeholder="Имя" 
 		:isError="$errors->has('name')" 
+		value="{{old('name')}}"
 		/>
 
         @error('email')
@@ -59,7 +61,7 @@
         </x-forms.primary-button>
 
         <x-slot:socialAuth>
-            <ul class="space-x-3 my-2">
+            <ul class="space-x-3 my-2 mt-3">
 				<li>
 					<a href="#" class="relative flex items-center h-14 px-12 rounded-lg border border-[#A07BF0] bg-white/20 hover:bg-white/20 active:bg-white/10 active:translate-y-0.5">
 						<svg class="shrink-0 absolute left-4 w-5 sm:w-6 h-5 sm:h-6" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
