@@ -1,4 +1,4 @@
-@@include('parts/header.html')
+@include('parts/header')
 
 	<main class="py-16 lg:py-20">
 		<div class="container">
@@ -158,15 +158,15 @@
 
 						<!-- Products list -->
 						<div class="products grid grid-cols-1 gap-y-8">
-							@@include('parts/inline-products/1.html')
-							@@include('parts/inline-products/2.html')
-							@@include('parts/inline-products/3.html')
-							@@include('parts/inline-products/4.html')
+							@include('parts/inline-products/1')
+							@include('parts/inline-products/2')
+							@include('parts/inline-products/3')
+							@include('parts/inline-products/4')
 						</div>
 			
 						<!-- Page pagination -->
 						<div class="mt-12">
-							@@include('parts/pagination.html')
+							@include('parts/pagination')
 						</div>
 					</div>
 				</div>
@@ -176,4 +176,4 @@
 		</div>
 	</main>
 
-@@include('parts/footer.html')
+@include('parts/footer')

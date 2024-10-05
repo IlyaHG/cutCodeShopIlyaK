@@ -26,9 +26,8 @@ Route::controller(AuthController::class)->group(function () {
 	Route::post('/forgot-password', 'forgotPassword')->middleware('guest')->name('password.email');
 	Route::get('/reset-password/{token}', 'showResetPassword')->middleware('guest')->name('password.reset');
 	Route::post('/reset-password', 'resetPassword')->middleware('guest')->name('password.update');
+	
 	// Socialite
-
-
 	Route::get('/auth/socialite/github', 'github')->middleware('guest')->name('socialite.github');
 	Route::get('/auth/socialite/github/callback', 'githubCallBack' )->middleware('guest')->name('socialite.github.callback');
 });
