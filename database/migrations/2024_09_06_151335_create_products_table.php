@@ -16,10 +16,10 @@ return new class extends Migration
 
 		Schema::create('product_categories', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('parent_id')->nullable()->index();
 			$table->boolean('is_active')->default(true)->index();
 			$table->string('title', 190)->index();
 			$table->longText('description')->nullable();
+			$table->boolean('is_on_main_page')->default(1);
 			$table->timestamps();
 		});
 
@@ -28,6 +28,7 @@ return new class extends Migration
 			$table->string('title');
 			$table->string('short_description')->nullable();
 			$table->string('description')->nullable();
+			$table->string('brand')->nullable();
 			$table->foreignId('category_id')->constrained('product_categories')->cascadeOnUpdate()->cascadeOnDelete();
 			$table->integer('image_id')->unsigned()->nullable();
 			$table->decimal('price',8,2)->default(0);
@@ -35,16 +36,6 @@ return new class extends Migration
 			$table->unsignedSmallInteger('in_stock')->nullable();
             $table->timestamps();
         });
-
-		Schema::create('product_category_relations', function (Blueprint $table) {
-			$table->unsignedBigInteger('category_id');
-			$table->unsignedBigInteger('product_id');
-			$table->unsignedInteger('level')->default(0)->index();
-			$table->primary([
-				'category_id',
-				'product_id',
-			]);
-		});
 
 		Schema::create('product_images', function (Blueprint $table) {
 			$table->id();
@@ -69,7 +60,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('product_images');
-        Schema::dropIfExists('product_category_relations');
         Schema::dropIfExists('products');
         Schema::dropIfExists('product_categories');
 

@@ -10,3 +10,9 @@ dfresh:
 	-php artisan migrate:rollback
 	-php artisan migrate
 	-php artisan db:seed
+
+test:
+	-php artisan test
+
+ser: 
+	-php artisan serve
