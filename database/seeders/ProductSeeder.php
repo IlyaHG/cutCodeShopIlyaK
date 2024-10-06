@@ -39,7 +39,7 @@ class ProductSeeder extends Seeder
 						'title' => $faker->name(), // Предположим, что у вас есть метод генерации имени продукта
 						'description' => $faker->text(), // Описание товара
 						'short_description' => $faker->text(), // Описание товара
-						'price' => $faker->randomFloat(2, 100, 1000), // Цена товара
+						'price' => $faker->randomFloat(2, 1000, 100000), // Цена товара
 						'category_id' => $category->id, // ID категории
 					]);
 				}

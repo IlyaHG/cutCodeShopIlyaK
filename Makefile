@@ -13,3 +13,6 @@ dfresh:
 
 test:
 	-php artisan test
+
+ser: 
+	-php artisan serve

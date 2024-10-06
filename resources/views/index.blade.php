@@ -1,7 +1,6 @@
 @extends('layout.layout')
 
 @section('content')
-    {{-- {{ $product_categories }} --}}
     <main class="py-16 lg:py-20">
         <div class="container">
 
@@ -60,8 +59,6 @@
                 <!-- Section heading -->
                 <h2 class="text-lg lg:text-[42px] font-black">Категории</h2>
 
-
-
                 <!-- Categories -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 mt-8">
                     @foreach ($product_categories as $category)
@@ -79,14 +76,10 @@
                 <!-- Products list -->
                 <div
                     class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-8 lg:gap-y-10 2xl:gap-y-12 mt-8">
-                    @include('parts/products/1')
-                    @include('parts/products/2')
-                    @include('parts/products/3')
-                    @include('parts/products/4')
-                    @include('parts/products/5')
-                    @include('parts/products/6')
-                    @include('parts/products/7')
-                    @include('parts/products/8')
+                    @foreach ($products as $product)
+                        @include('parts/products/index')
+                    @endforeach
+
                 </div>
 
                 <div class="mt-12 text-center">
@@ -100,42 +93,16 @@
 
                 <!-- Brands list -->
                 <div class="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-4 md:gap-8 mt-12">
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/1.png" class="object-contain w-full h-full" alt="Steelseries">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">Steelseries</div>
-                    </a>
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/2.png" class="object-contain w-full h-full" alt="Razer">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">Razer</div>
-                    </a>
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/3.png" class="object-contain w-full h-full" alt="Logitech">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">Logitech</div>
-                    </a>
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/4.png" class="object-contain w-full h-full" alt="HyperX">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">HyperX</div>
-                    </a>
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/5.png" class="object-contain w-full h-full" alt="Playstation">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">Playstation</div>
-                    </a>
-                    <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                        <div class="h-12 md:h-16">
-                            <img src="./images/brands/6.png" class="object-contain w-full h-full" alt="XBOX">
-                        </div>
-                        <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">XBOX</div>
-                    </a>
+                    @foreach ($brands as $brand)
+                        <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
+                            <div class="h-12 md:h-16">
+                                <img src="{{ $brand->getImageUrl() }}" class="object-contain w-full h-full"
+                                    alt="Steelseries">
+                            </div>
+                            <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">{{ $brand->title }}
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </section>
 

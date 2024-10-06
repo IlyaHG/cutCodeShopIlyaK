@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,33 +18,24 @@ class BrandSeeder extends Seeder
 	 */
 	public function run()
 	{
-		$category_list = [
-			'Мыши',
-			'Клавиатуры',
-			'Наушники',
-			'Поверхности',
-			'Мониторы',
-			'Геймпады',
-			'Консоли',
-			'Акустика',
-			'Аксессуары',
-			'Распродажа',
+		$brand_list = [
+			'SteelSeries',
+			'Razor',
+			'Logitech',
+			'HyperX',
+			'PlayStation',
+			'Xbox',
+			'Microsoft',
+			'Intel',
+			'AMD',
 		];
-		$faker = Faker::create();
-		foreach ($category_list as $category_name) {
-			$category = ProductCategory::create(['title' => $category_name]);
-
-			    // Создаем 5 товаров для каждой категории
-				for ($i = 0; $i < 5; $i++) {
-					Product::create([
-						'title' => $faker->name(), // Предположим, что у вас есть метод генерации имени продукта
-						'description' => $faker->text(), // Описание товара
-						'short_description' => $faker->text(), // Описание товара
-						'price' => $faker->randomFloat(2, 100, 1000), // Цена товара
-						'category_id' => $category->id, // ID категории
-					]);
-				}
+		
+		foreach($brand_list as $brand_name) {
+			Brand::create([
+				'title'=> $brand_name,
+			]);
 		}
-		echo ('Категории товаров успешно добавлены');
+
+		echo ('Бренды товаров успешно добавлены');
 	}
 }
