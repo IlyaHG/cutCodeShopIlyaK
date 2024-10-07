@@ -19,7 +19,6 @@ return new class extends Migration
 			$table->boolean('is_active')->default(true)->index();
 			$table->string('title', 190)->index();
 			$table->longText('description')->nullable();
-			$table->boolean('is_on_main_page')->default(1);
 			$table->timestamps();
 		});
 
@@ -30,10 +29,7 @@ return new class extends Migration
 			$table->string('description')->nullable();
 			$table->string('brand')->nullable();
 			$table->foreignId('category_id')->constrained('product_categories')->cascadeOnUpdate()->cascadeOnDelete();
-			$table->integer('image_id')->unsigned()->nullable();
 			$table->decimal('price',8,2)->default(0);
-			$table->decimal('old_price',8,2)->default(0);
-			$table->unsignedSmallInteger('in_stock')->nullable();
             $table->timestamps();
         });
 
