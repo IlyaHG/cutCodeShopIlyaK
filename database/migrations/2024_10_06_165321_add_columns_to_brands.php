@@ -13,20 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('brands', function (Blueprint $table) {
-            //
-        });
-    }
+		Schema::table('brands', function (Blueprint $table) {
+			$table->boolean('is_on_main_page')->default(false);
+			$table->integer('sorting')->default(999);
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('brands', function (Blueprint $table) {
-            //
-        });
+		});
     }
+	public function down() {
+		Schema::table('brands', function (Blueprint $table) {
+			$table->dropColumn('is_on_main_page');
+			$table->dropColumn('thumbnail');
+			$table->dropColumn('slug');
+			$table->dropColumn('sorting');
+
+		});
+	}
+
 };

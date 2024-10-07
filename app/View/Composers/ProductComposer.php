@@ -4,7 +4,7 @@ namespace App\View\Composers;
 
 use App\Models\Brand;
 use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Category;
 use App\Repositories\UserRepository;
 use Illuminate\View\View;
 
@@ -12,7 +12,7 @@ class ProductComposer
 {
 	public function compose(View $view): void
 	{
-		$product_categories = ProductCategory::where('is_on_main_page', 1)->get();
+		$product_categories = Category::where('is_on_main_page', 1)->get();
 
 		$products = Product::all()->sortBy('id')->take(8);
 		$brands = Brand::all()->take(6);

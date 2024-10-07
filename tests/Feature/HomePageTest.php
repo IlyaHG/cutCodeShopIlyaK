@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Brand;
 use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -18,7 +18,7 @@ class HomePageTest extends TestCase
      */
     public function test_that_products_from_bd_on_home_page()
     {
-		$category = ProductCategory::create(['title'=>'test_category']);
+		$category = Category::create(['title'=>'test_category']);
 		$test_product = Product::create([
 			'title'=>'test_title',
 			'category_id'=>$category->id,
@@ -39,7 +39,7 @@ class HomePageTest extends TestCase
     }
 	public function test_that_categories_from_bd_can_see_on_home_page()
     {
-		$test_category = ProductCategory::create([
+		$test_category = Category::create([
 			'title'=>'test_title',
 		]);
         $response = $this->get('/');

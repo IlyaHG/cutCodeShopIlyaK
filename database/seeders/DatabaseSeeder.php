@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Category;
+use Database\Factories\BrandFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,10 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-		$this->call([
-			UserSeeder::class,
-			ProductSeeder::class,
-			BrandSeeder::class
-		]);
+		Brand::factory(20)->create();
+
+
+		Product::factory(20)
+		->has(Category::factory(rand(1,3)))
+		->create();
+		
+		// $this->call([
+		// 	UserSeeder::class,
+		// 	ProductSeeder::class,
+		// ]);
     }
 }

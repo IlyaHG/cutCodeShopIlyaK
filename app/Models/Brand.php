@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Brand extends Model
 {
@@ -12,5 +13,19 @@ class Brand extends Model
 	use HasImage;
 
 
-	protected $fillable = ['title'];
+	protected $fillable = ['title','slug','is_on_main_page'];
+
+	protected static function boot(): void
+	{
+		parent::boot();
+
+		static::creating(function(Brand $brand) {
+
+			$brand->slug = $brand->slug ?? str($brand->title)->slug();
+		});
+	}
+
+	public function products(): HasMany {
+		return $this->hasMany(Product::class);
+	}
 }

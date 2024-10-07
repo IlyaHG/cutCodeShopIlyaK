@@ -13,20 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
-        });
+		Schema::table('categories', function (Blueprint $table) {
+			$table->boolean('is_on_main_page')->default(false);
+			$table->integer('sorting')->default(999);
+
+		});
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('categories', function (Blueprint $table) {
-            //
-        });
-    }
 };

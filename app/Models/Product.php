@@ -6,6 +6,7 @@ use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Product extends Model
 {
@@ -15,24 +16,30 @@ class Product extends Model
 
 	protected $fillable = [
 		'user_id',
-		'space_id',
 		'category_id',
-		'image_id',
-		'is_active',
+		'slug',
 		'title',
-		'short_description',
-		'description',
-		'barcode_ean13',
 		'price',
-		'old_price',
-		'in_stock',
 	];
 
 
-	public function category(): BelongsTo
+	public function Category(): BelongsToMany
 	{
-		return $this->belongsTo(ProductCategory::class);
+		return $this->belongsToMany(Category::class);
 	}
 
+	public function brand(): BelongsTo {
+		return $this->belongsTo(Brand::class);
+	}
+
+	protected static function boot(): void
+	{
+		parent::boot();
+
+		static::creating(function(Product $product) {
+
+			$product->slug = $product->slug ?? str($product->title)->slug();
+		});
+	}
 
 }
