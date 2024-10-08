@@ -35,7 +35,6 @@ return new class extends Migration {
 
 		Schema::create('category_product', function (Blueprint $table) {
 			$table->id();
-
 			$table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 			$table->foreignIdFor(Product::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 

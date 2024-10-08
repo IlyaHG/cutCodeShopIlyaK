@@ -1,8 +1,6 @@
 @include('parts.unauth-header')
 
-@if (session()->has('message'))
-    {{ session('message') }}
-@endif
+@include('parts.flash')
 
 @yield('content')
 

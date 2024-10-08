@@ -21,6 +21,8 @@ class BrandFactory extends Factory
 			'is_on_main_page' => $this->faker->boolean(),
 			// 'thumbnail' => $this->faker->fixturesImage('products', 'images/products'),
 			'sorting' => $this->faker->numberBetween(1,999)
+
+			
         ];
     }
 }

@@ -15,7 +15,6 @@ return new class extends Migration {
 	{
 		Schema::table('products', function (Blueprint $table) {
 			$table->boolean('is_on_main_page')->default(false);
-
 			$table->integer('sorting')->default(999);
 
 		});

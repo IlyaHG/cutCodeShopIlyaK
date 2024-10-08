@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasImage;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,6 +21,8 @@ class Product extends Model
 		'slug',
 		'title',
 		'price',
+		'is_on_main_page',
+		'sorting'
 	];
 
 
@@ -28,7 +31,8 @@ class Product extends Model
 		return $this->belongsToMany(Category::class);
 	}
 
-	public function brand(): BelongsTo {
+	public function brand(): BelongsTo
+	{
 		return $this->belongsTo(Brand::class);
 	}
 
@@ -36,10 +40,15 @@ class Product extends Model
 	{
 		parent::boot();
 
-		static::creating(function(Product $product) {
+		static::creating(function (Product $product) {
 
 			$product->slug = $product->slug ?? str($product->title)->slug();
 		});
+	}
+
+	public function scopeHomePage(Builder $query) {
+		$query->where('on_home_page', true)->orderBy('sorting')->limit(6);
+		
 	}
 
 }

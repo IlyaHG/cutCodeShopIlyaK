@@ -22,8 +22,6 @@ return new class extends Migration
 	public function down() {
 		Schema::table('brands', function (Blueprint $table) {
 			$table->dropColumn('is_on_main_page');
-			$table->dropColumn('thumbnail');
-			$table->dropColumn('slug');
 			$table->dropColumn('sorting');
 
 		});
