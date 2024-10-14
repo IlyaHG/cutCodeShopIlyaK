@@ -1,4 +1,4 @@
-@if (session()->has('message'))
+{{-- @if (session()->has('message'))
     {{ session('message') }}
 @endif
 
@@ -6,4 +6,4 @@
     <div class="{{ $message->class() }} p-5">
         {{ $message->message() }}
     </div>
-@endif
+@endif --}}

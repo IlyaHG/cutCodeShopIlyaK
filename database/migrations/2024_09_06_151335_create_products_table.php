@@ -50,11 +50,10 @@ return new class extends Migration {
 	public function down(): void
 	{
 		if (app()->isLocal()) {
-			Schema::dropIfExists('product_category_product');
-
+			Schema::dropIfExists('category_product');
 			Schema::dropIfExists('products');
+			Schema::dropIfExists('categories');
 
-			Schema::dropIfExists('product_categories');
 		}
 
 	}

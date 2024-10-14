@@ -47,7 +47,7 @@ class Product extends Model
 	}
 
 	public function scopeHomePage(Builder $query) {
-		$query->where('on_home_page', true)->orderBy('sorting')->limit(6);
+		$query->where('is_on_main_page', true)->orderBy('sorting')->limit(6);
 		
 	}
 
