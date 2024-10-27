@@ -3,6 +3,7 @@
 .PHONY: up
 all: up
 
+
 start:
 	@echo "Поднимаю контейнеры.."
 	-docker compose up -d
