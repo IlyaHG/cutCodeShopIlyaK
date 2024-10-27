@@ -29,8 +29,10 @@ class AppServiceProvider extends ServiceProvider
         Model::preventLazyLoading(!app()->isProduction());
         Model::preventSilentlyDiscardingAttributes(!app()->isProduction());
 
+        
 		DB::whenQueryingForLongerThan(500, function (Connection $connection){
 
 		});
+
     }
 }
