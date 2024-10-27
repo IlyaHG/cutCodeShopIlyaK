@@ -14,6 +14,7 @@ start:
 	-docker exec  php_ilya composer install
 	-docker exec  php_ilya npm install
 
+	-docker exec  php_ilya php artisan storage:link
 
 	@echo "Запуск сервера, миграция и заполнение базы данных..."
 	-docker exec  php_ilya php artisan migrate
