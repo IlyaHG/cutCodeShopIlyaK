@@ -14,6 +14,8 @@ class IndexController extends Controller
     public function __invoke(): Factory|View|Application
 	{
 
+    
+
 		$categories = Category::query()->homePage()->get();
 		$products = Product::query()->homePage()->get();
 		$brands = Brand::query()->homePage()->get();

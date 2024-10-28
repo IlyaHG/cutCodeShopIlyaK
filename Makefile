@@ -16,13 +16,13 @@ start:
 
 	-docker exec  php_ilya php artisan storage:link
 
-	@echo "Запуск сервера, миграция и заполнение базы данных..."
+	- docker exec -it php_ilya npm run build
+
 	-docker exec  php_ilya php artisan migrate
 	-docker exec  php_ilya php artisan db:seed
 
 	@echo "Включаю NPM dev"
-	-docker exec -it php_ilya npm run dev
-
+	- docker exec -it php_ilya npm run dev
 npm_run_dev:
 	docker exec -it php_ilya npm run dev
 
@@ -36,9 +36,7 @@ up:
 	docker compose up -d
 
 dfresh:
-	-php artisan migrate:rollback
-	-php artisan migrate
-	-php artisan db:seed
+	-docker exec  php_ilya php artisan shop:dbrefresh
 
 test:
 	-php artisan test
