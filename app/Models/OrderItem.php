@@ -13,5 +13,5 @@ class OrderItem extends Model
 		'product_title',
 		'price',
 		'old_price',
-	],
+    ];
 }
