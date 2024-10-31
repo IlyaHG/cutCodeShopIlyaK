@@ -26,15 +26,14 @@ services:
     ports:
       - "3316:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ROOT_HOST: '%'
       MYSQL_DATABASE: '${DB_DATABASE}'
       MYSQL_USER: '${DB_USERNAME}'
       MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     volumes:
-      - db_data:/var/lib/mysql
-      - ./env/init.sql:/docker-entrypoint-initdb.d/init.sql # Подключаем ваш скрипт
+      - 'mysql_local:/var/lib/mysql'
 
   # vite:
   #   image: node:alpine
@@ -62,4 +61,5 @@ services:
   #   entrypoint: [ "php", "/var/www/app_cut/artisan" ]
 
 volumes:
-  db_data:
+    mysql_local:
+    driver: local

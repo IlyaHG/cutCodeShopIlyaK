@@ -17,6 +17,7 @@ class IndexController extends Controller
 
 		$categories = Category::query()->homePage()->get();
 		$products = Product::query()->homePage()->get();
+        dd($products);
 		$brands = Brand::query()->homePage()->get();
 
 		return view("index",compact(

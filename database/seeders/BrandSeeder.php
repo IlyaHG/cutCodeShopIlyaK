@@ -29,7 +29,7 @@ class BrandSeeder extends Seeder
 			'Intel',
 			'AMD',
 		];
-		
+
 		foreach($brand_list as $brand_name) {
 			Brand::create([
 				'title'=> $brand_name,

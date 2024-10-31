@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
 			$table->string('title');
-			$table->string('slug');
+            $table->boolean('is_on_main_page')->default(false);
+			$table->integer('sorting')->default(999);
+			$table->string('slug')->unique();
             $table->timestamps();
         });
     }
