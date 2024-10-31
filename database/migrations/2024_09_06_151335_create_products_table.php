@@ -19,14 +19,14 @@ return new class extends Migration {
 		Schema::create('categories', function (Blueprint $table): void {
 			$table->id();
 			$table->string('title');
-			$table->string('slug');
+			$table->string('slug')->unique();
 			$table->timestamps();
 		});
 
 		Schema::create('products', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->string('slug');
+			$table->string('slug')->unique();
 			$table->string('thumbnail')->nullable();
 			$table->unsignedInteger('price')->default(0);
 			$table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete()->cascadeOnUpdate();
