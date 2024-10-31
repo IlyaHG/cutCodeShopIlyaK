@@ -15,7 +15,7 @@
     <meta name="theme-color" content="#1E1F43">
 
 
-    @vite('resources/css/app.css') 
+    @vite('resources/css/app.css')
 
 </head>
 

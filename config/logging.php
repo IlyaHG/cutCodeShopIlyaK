@@ -54,7 +54,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'telegram'],
             'ignore_exceptions' => false,
         ],
 
@@ -123,8 +123,8 @@ return [
             'driver' => 'custom',
             'via' => TelegramLoggerFactory::class,
             'level' => env('LOG_LEVEL', 'debug'),
-            'chat_id' => -4568489150,
-            'token' => '6856839710:AAFyvIf0xaCmVzm7WRZ-_G7l2LWZxnksonw',
+            'chat_id' => env('LOGGER_TELEGRAM_BOT_ID', ''),
+            'token' => env('LOGGER_TELEGRAM_BOT_TOKEN', ''),
         ],
     ],
 

@@ -28,6 +28,6 @@ class Category extends Model
 	}
 	public function scopeHomePage(Builder $query) {
 		$query->where('is_on_main_page', true)->orderBy('sorting')->limit(6);
-		
+
 	}
 }

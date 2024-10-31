@@ -12,41 +12,20 @@ use App\Http\Kernel;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         Model::shouldBeStrict(!app()->isProduction());
 
         if (app()->isProduction()) {
-            DB::whenQueryingForLongerThan(500, function (Connection $connection) {
-                logger()->channel("telegram")->debug('whenQueryingForLongerThan:' . $connection->query()->toSql());
-            });
-
-
-            DB::listen(function ($query) {
-                if ($query->time > 1.1) {
-                    logger()->channel("telegram")->debug('listen:' . $query->sql, $query->bindings);
-
+            DB::listen(static function ($query) {
+                if ($query->time > 100) {
+                    logger()
+                        ->channel("telegram")
+                        ->debug('query longer than 1ms:' . $query->sql, $query->bindings);
                 }
             });
 
-            $kernel = app(Kernel::class);
-
-            $kernel->whenRequestLifecycleIsLongerThan(
+            app(Kernel::class)->whenRequestLifecycleIsLongerThan(
                 CarbonInterval::seconds(4),
                 function () {
                     logger()->channel("telegram")->debug('whenRequestLifecycleIsLongerThan:' . request()->url());
@@ -54,7 +33,5 @@ class AppServiceProvider extends ServiceProvider
                 }
             );
         }
-
-
     }
 }
