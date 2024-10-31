@@ -9,7 +9,7 @@ trait HasImage
 	public function getImageUrl()
 	{
 
-		\Log::info('Current Class:', [get_class($this)]);
+		// \Log::info('Current Class:', [get_class($this)]);
 
 		switch (true) {
 			case $this instanceof Product:
@@ -17,7 +17,7 @@ trait HasImage
 
 			case $this instanceof Brand:
 				return '/images/brands/' . $this->id . '.png';
-				
+
 			default:
 				return null;
 		}
