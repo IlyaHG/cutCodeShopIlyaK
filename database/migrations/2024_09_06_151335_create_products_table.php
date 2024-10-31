@@ -29,7 +29,7 @@ return new class extends Migration {
 			$table->string('slug');
 			$table->string('thumbnail')->nullable();
 			$table->unsignedInteger('price')->default(0);
-			$table->foreignIdFor(Brand::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+			$table->foreignIdFor(Brand::class)->nullable()->constrained()->nullOnDelete()->cascadeOnUpdate();
 			$table->timestamps();
 		});
 
