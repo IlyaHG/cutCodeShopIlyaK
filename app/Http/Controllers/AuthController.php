@@ -58,11 +58,12 @@ class AuthController extends Controller
 
 	public function register(RegisterFormRequest $request): RedirectResponse
 	{
-		$data = $request->all();
+		$data = $request->except('_token','password_confirmation');
 
-		$data['password'] = Hash::make($data['password']);
+		$data['password'] = bcrypt($data['password']);
 
 		$user = User::create($data);
+
 
 		event(new Registered($user));
 
@@ -130,7 +131,7 @@ class AuthController extends Controller
 		$user = User::query()->updateOrCreate([
 			'github_id' => $githubUser->id,
 		], [
-			'name' => $githubUser->name,
+			'name' => $githubUser->name ?? $githubUser->id,
 			'password' => bcrypt(str()->random(12)),
 			'email' => $githubUser->email,
 		]);
