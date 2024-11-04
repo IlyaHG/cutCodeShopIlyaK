@@ -20,124 +20,133 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-	public function showLogin(): Factory|View|Application
-	{
-		return view("auth.login");
-	}
-
-	public function showRegister(): Factory|View|Application
-	{
-		return view("auth.sign-up");
-	}
-
-	public function showForgotPassword(): Factory|View|Application
-	{
-		return view("auth.forgot-password");
-
-	}
-	public function showResetPassword(string $token): Factory|View|Application
-	{
-		return view('auth.reset-password', ['token' => $token]);
-	}
-
-	public function login(LoginFormRequest $request): RedirectResponse
-	{
-		if (!auth('web')->attempt($request->only('email', 'password'))) {
-			return redirect(route('login'))->withErrors(
-				[
-					'email' => 'Пользователь не найден, либо данные введены не правильно'
-				]
-			)->onlyInput('email');
-		}
-
-		$request->session()->regenerate();
-
-		return redirect()->intended(route('homePage'));
-
-	}
-
-	public function register(RegisterFormRequest $request): RedirectResponse
-	{
-		$data = $request->except('_token','password_confirmation');
-
-		$data['password'] = bcrypt($data['password']);
-
-		$user = User::create($data);
+    public function showLogin(): Factory|View|Application|RedirectResponse
+    {
+        // flash()->info('test');
 
 
-		event(new Registered($user));
+        return view("auth.login");
+    }
 
-		if ($user) {
-			auth('web')->login($user);
-		}
+    public function showRegister(): Factory|View|Application
+    {
+        return view("auth.sign-up");
+    }
 
-		return redirect()->route('homePage');
-	}
-	public function logout(): RedirectResponse
-	{
+    public function showForgotPassword(): Factory|View|Application
+    {
+        return view("auth.forgot-password");
 
-		auth()->logout();
+    }
+    public function showResetPassword(string $token): Factory|View|Application
+    {
+        return view('auth.reset-password', ['token' => $token]);
+    }
 
-		request()->session()->invalidate();
+    public function login(LoginFormRequest $request): RedirectResponse
+    {
+        if (!auth('web')->attempt($request->only('email', 'password'))) {
+            return redirect(route('login'))->withErrors(
+                [
+                    'email' => 'Пользователь не найден, либо данные введены не правильно'
+                ]
+            )->onlyInput('email');
+        }
 
-		request()->session()->regenerateToken();
+        $request->session()->regenerate();
 
-		return redirect(route('login'));
+        return redirect()->intended(route('homePage'));
 
-	}
+    }
 
-	public function forgotPassword(ForgotPasswordFormRequest $request): RedirectResponse
-	{
+    public function register(RegisterFormRequest $request): RedirectResponse
+    {
+        $data = $request->except('_token', 'password_confirmation');
 
-		$status = Password::sendResetLink(
-			$request->only('email')
-		);
+        $data['password'] = bcrypt($data['password']);
 
-		// TODO 3rd lesson
+        $user = User::create($data);
 
-		return $status === Password::RESET_LINK_SENT
-			? back()->with(['message' => __($status)])
-			: back()->withErrors(['email' => __($status)]);
-	}
-	public function resetPassword(ResetPasswordFormRequest $request): RedirectResponse
-	{
-		$status = Password::reset(
-			$request->only('email', 'password', 'password_confirmation', 'token'),
-			function (User $user, string $password) {
-				$user->forceFill([
-					'password' => bcrypt($password)
-				])->setRememberToken(str()->random(60));
 
-				$user->save();
+        event(new Registered($user));
 
-				event(new PasswordReset($user));
-			}
-		);
-		return $status === Password::PASSWORD_RESET
-			? redirect()->route('login')->with('status', __($status))
-			: back()->withErrors(['email' => [__($status)]]);
-	}
+        if ($user) {
+            auth('web')->login($user);
+        }
 
-	public function github(): RedirectResponse
-	{
-		return Socialite::driver('github')->redirect();
-	}
+        return redirect()->route('homePage');
+    }
+    public function logout(): RedirectResponse
+    {
 
-	public function githubCallBack() {
-		$githubUser = Socialite::driver('github')->user();
+        auth()->logout();
 
-		//TODO 3rd move to custom table
+        request()->session()->invalidate();
 
-		$user = User::query()->updateOrCreate([
-			'github_id' => $githubUser->id,
-		], [
-			'name' => $githubUser->name ?? $githubUser->id,
-			'password' => bcrypt(str()->random(12)),
-			'email' => $githubUser->email,
-		]);
+        request()->session()->regenerateToken();
 
-		auth()->login($user);
+        return redirect(route('login'));
 
-		return redirect()->intended(route('homePage'));
-	}
+    }
+
+    public function forgotPassword(ForgotPasswordFormRequest $request): RedirectResponse
+    {
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        if ($status === Password::RESET_LINK_SENT) {
+            flash()->info(__($status));
+            return back();
+        }
+
+        return back()->withErrors(['email' => __($status)]);
+    }
+    public function resetPassword(ResetPasswordFormRequest $request): RedirectResponse
+    {
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password)
+                ])->setRememberToken(str()->random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status === Password::PASSWORD_RESET) {
+            flash()->info(__($status));
+            return back();
+        }
+
+        return back()->withErrors(['email' => [__($status)]]);
+    }
+
+    public function github(): RedirectResponse
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function githubCallBack()
+    {
+        $githubUser = Socialite::driver('github')->user();
+
+        //TODO 3rd move to custom table
+
+        $user = User::query()->updateOrCreate([
+            'github_id' => $githubUser->id,
+        ], [
+            'name' => $githubUser->name ?? $githubUser->id,
+            'password' => bcrypt(str()->random(12)),
+            'email' => $githubUser->email,
+        ]);
+
+        auth()->login($user);
+
+        return redirect()->intended(route('homePage'));
+    }
 }
