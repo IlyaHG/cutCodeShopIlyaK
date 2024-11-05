@@ -45,3 +45,9 @@ test:
 
 ser:
 	-php artisan serve
+
+ccache:
+	-docker exec  php_ilya php artisan route:clear
+	-docker exec  php_ilya php artisan cache:clear
+	-docker exec  php_ilya php artisan config:clear
+

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Event;
 use Notification;
 use Tests\TestCase;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Artisan;
 
 class AuthControllerTest extends TestCase
 {
@@ -24,17 +25,14 @@ class AuthControllerTest extends TestCase
 
         $data = [
             'email' => 'assss@gmail.com',
-            "name" => 'test=test',
-            "password" => 'test-test-test123',
-            "password_confirmation" => 'test-test-test123',
+            'name' => 'test=test',
+            'password' => 'test-test-test123',
+            'password_confirmation' => 'test-test-test123',
         ];
 
-        $response = $this->post(
-            action([AuthController::class, 'register']),
-            $data
-        );
+        $response = $this->post(action([AuthController::class, 'register']), $data);
 
         $response->assertRedirect(route('homePage'));
-
     }
+
 }

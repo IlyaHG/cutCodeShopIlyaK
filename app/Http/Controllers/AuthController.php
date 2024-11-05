@@ -61,6 +61,8 @@ class AuthController extends Controller
 
     public function register(RegisterFormRequest $request): RedirectResponse
     {
+        
+
         $data = $request->except('_token', 'password_confirmation');
 
         $data['password'] = bcrypt($data['password']);
