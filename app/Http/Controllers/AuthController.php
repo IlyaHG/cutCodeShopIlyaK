@@ -61,7 +61,7 @@ class AuthController extends Controller
 
     public function register(RegisterFormRequest $request): RedirectResponse
     {
-        
+
 
         $data = $request->except('_token', 'password_confirmation');
 
@@ -137,7 +137,6 @@ class AuthController extends Controller
     {
         $githubUser = Socialite::driver('github')->user();
 
-        //TODO 3rd move to custom table
 
         $user = User::query()->updateOrCreate([
             'github_id' => $githubUser->id,
