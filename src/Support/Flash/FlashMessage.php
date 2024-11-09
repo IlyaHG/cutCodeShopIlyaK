@@ -1,13 +1,12 @@
 <?php
 
 declare(strict_types=1);
-namespace App\Support\Flash;
+namespace Support\Flash;
 
 final class FlashMessage
 {
     public function __construct(protected string $message, protected string $class)
     {
-
     }
 
     public function message(): string
