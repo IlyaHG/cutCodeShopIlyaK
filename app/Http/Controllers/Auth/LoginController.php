@@ -33,6 +33,7 @@ class LoginController extends Controller
 
         return redirect()->intended(route('homePage'));
     }
+
     public function logout(): RedirectResponse
     {
 

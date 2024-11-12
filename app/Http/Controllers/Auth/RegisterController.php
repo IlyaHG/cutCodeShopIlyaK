@@ -17,7 +17,7 @@ class RegisterController extends Controller
     public function page(): Factory|View|Application|RedirectResponse
     {
         // flash()->info('test');
-        return view("auth.sign-up");
+        return view("auth.register");
     }
 
     public function handle(RegisterFormRequest $request, RegisterNewUserContract $action): RedirectResponse

@@ -4,8 +4,7 @@ namespace App\Listeners;
 
 use App\Notifications\NewUserNotification;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+
 
 class SendEmailToNewUserListener
 {

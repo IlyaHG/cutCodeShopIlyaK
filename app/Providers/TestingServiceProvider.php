@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Support\Testing\FakerImageProvider;
+use Support\Testing\FakerImageProvider;
 use Faker\Factory;
 use Faker\Generator;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +31,6 @@ class TestingServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-        
+
 	}
 }

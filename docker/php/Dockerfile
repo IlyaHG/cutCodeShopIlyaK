@@ -8,6 +8,8 @@ RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
 RUN pecl install xdebug-3.2.0 && docker-php-ext-enable xdebug
 
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 COPY docker/php/conf.d/* $PHP_INI_DIR/conf.d/
 
 CMD ["php-fpm"]
