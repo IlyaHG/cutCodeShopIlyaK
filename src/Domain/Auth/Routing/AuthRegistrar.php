@@ -42,7 +42,7 @@ class AuthRegistrar implements RouteRegistrar
             });
 
             Route:: controller(ResetPasswordController::class) ->group(function () {
-                Route::get('/reset-password/{token}', 'page')->middleware('guest')->name('password-reset');
+                Route::get('/reset-password/{token}', 'page')->middleware('guest')->name('password.reset');
                 Route::post('/reset-password', 'handle')->middleware('guest')->name('password-reset.handle');
             });
 

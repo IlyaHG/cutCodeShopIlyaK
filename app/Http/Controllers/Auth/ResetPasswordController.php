@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Password;
 
 
 
-class ResetPasswordController extends Controller
+class   ResetPasswordController extends Controller
 {
     public function page(string $token): Factory|View|Application
     {
