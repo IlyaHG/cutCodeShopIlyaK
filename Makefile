@@ -12,6 +12,8 @@ start:
 	-docker exec  php_ilya php artisan key:generate
 
 	-docker exec  php_ilya composer install
+	-docker exec -it -u 0 php_ilya apt-get install npm
+
 	-docker exec  php_ilya npm install
 
 	-docker exec  php_ilya php artisan storage:link
@@ -45,3 +47,9 @@ test:
 
 ser:
 	-php artisan serve
+
+ccache:
+	-docker exec  php_ilya php artisan route:clear
+	-docker exec  php_ilya php artisan cache:clear
+	-docker exec  php_ilya php artisan config:clear
+

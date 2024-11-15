@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\User;
+use Domain\Auth\Models\User;
 use Database\Factories\BrandFactory;
 use Illuminate\Database\Seeder;
 

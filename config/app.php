@@ -1,5 +1,8 @@
 <?php
 
+use App\Providers\DomainServiceProvider;
+use App\Providers\TestingServiceProvider;
+use App\Providers\ViewServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -182,6 +185,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -191,11 +195,14 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
+
+        ViewServiceProvider::class,
+        TestingServiceProvider::class,
+        DomainServiceProvider::class
 
     ],
 

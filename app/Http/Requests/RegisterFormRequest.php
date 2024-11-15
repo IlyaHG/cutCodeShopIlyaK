@@ -7,6 +7,7 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterFormRequest extends FormRequest
 {
+
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *

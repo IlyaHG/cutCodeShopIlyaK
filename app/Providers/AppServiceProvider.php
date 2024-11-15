@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Connection;
 use Illuminate\Support\Facades\DB;
 use App\Http\Kernel;
-use Illuminate\Validation\Password\Rules\Password;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
