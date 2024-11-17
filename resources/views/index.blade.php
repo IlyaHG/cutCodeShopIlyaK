@@ -58,10 +58,8 @@
 
         <!-- Categories -->
         <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 mt-8">
-            @foreach ($product_categories as $category)
-                <a href="catalog.html"
-                    class="p-3 sm:p-4 2xl:p-6 rounded-xl bg-card hover:bg-pink text-xxs sm:text-xs lg:text-sm text-white font-semibold">{{ $category->title }}</a>
-            @endforeach
+
+            @each('catalog.parts.category', $product_categories, 'item')
 
         </div>
     </section>
@@ -73,14 +71,12 @@
         <!-- Products list -->
         <div
             class="products grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-8 lg:gap-y-10 2xl:gap-y-12 mt-8">
-            @foreach ($products as $product)
-                @include('parts/products/index')
-            @endforeach
+            @each('catalog.parts.product', $products, 'item')
 
         </div>
 
         <div class="mt-12 text-center">
-            <a href="catalog.html" class="btn btn-purple">Все товары &nbsp;→</a>
+            <a href="#" class="btn btn-purple">Все товары &nbsp;→</a>
         </div>
     </section>
 
@@ -90,14 +86,9 @@
 
         <!-- Brands list -->
         <div class="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-4 md:gap-8 mt-12">
+            @each('catalog.parts.brand', $brands, 'item')
             @foreach ($brands as $brand)
-                <a href="catalog.html" class="p-6 rounded-xl bg-card hover:bg-card/60">
-                    <div class="h-12 md:h-16">
-                        <img src="{{ $brand->getImageUrl() }}" class="object-contain w-full h-full" alt="Steelseries">
-                    </div>
-                    <div class="mt-8 text-xs sm:text-sm lg:text-md font-semibold text-center">{{ $brand->title }}
-                    </div>
-                </a>
+
             @endforeach
         </div>
     </section>
