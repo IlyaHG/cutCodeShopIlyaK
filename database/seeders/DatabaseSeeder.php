@@ -6,8 +6,10 @@ namespace Database\Seeders;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use Domain\Auth\Models\User;
+
 use Database\Factories\BrandFactory;
+use Database\Factories\UserFactory;
+use Domain\Auth\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +24,7 @@ class DatabaseSeeder extends Seeder
 		Brand::factory(20)->create();
 
         Category::factory(10)->has(Product::factory(rand(5,15)))->create();
-		User::factory(2)->create();
+		UserFactory::new()->create();
 		// $this->call([
 		// 	UserSeeder::class,
 		// 	ProductSeeder::class,

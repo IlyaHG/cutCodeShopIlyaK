@@ -15,16 +15,16 @@
     <meta name="theme-color" content="#1E1F43">
 
 
-    @vite('resources/css/app.css') 
+    @vite('resources/css/app.css')
 
 </head>
 
 <body x-data="{ 'showTaskUploadModal': false, 'showTaskEditModal': false }" x-cloak>
+@include('parts.flash')
 
     @include('parts.header')
 
 
-    @include('parts.flash')
 
     <main class="py-16 lg:py-20">
         <div class="container">
