@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\HTTP\Controllers;
+namespace Tests\Feature\App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,10 +18,11 @@ class ForgotPasswordControllerTest extends TestCase
      */
     public function it_forgot_password_page_success(): void
     {
-        $this->get(action([ForgotPasswordController::class, 'page']))
+        $this->get('/forgot-password')
             ->assertOk()
             ->assertSee('Забыли пароль')
             ->assertViewIs('auth.forgot-password');
+
     }
 
 }

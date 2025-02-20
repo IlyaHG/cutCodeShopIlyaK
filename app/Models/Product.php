@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Models\HasSlug;
+use App\Traits\Models\HasThumbnail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ class Product extends Model
 {
 	use HasFactory;
     use HasSlug;
+    use HasThumbnail;
 
 
 	protected $fillable = [
@@ -25,7 +27,10 @@ class Product extends Model
 		'sorting'
 	];
 
-
+    protected function thumbnailDir(): string
+    {
+        return 'products';
+    }
 	public function Category(): BelongsToMany
 	{
 		return $this->belongsToMany(Category::class);
@@ -40,5 +45,6 @@ class Product extends Model
 		$query->where('is_on_main_page', true)->orderBy('sorting')->limit(6);
 
 	}
+
 
 }

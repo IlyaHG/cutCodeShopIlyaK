@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\HTTP\Controllers;
+namespace Tests\Feature\App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginController;
 use Database\Factories\UserFactory;

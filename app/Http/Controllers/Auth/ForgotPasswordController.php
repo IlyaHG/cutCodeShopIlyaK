@@ -16,7 +16,6 @@ class ForgotPasswordController extends Controller
 {
     public function page(): Factory|View|Application|RedirectResponse
     {
-        // flash()->info('test');
         return view("auth.forgot-password");
     }
 

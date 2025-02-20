@@ -26,7 +26,6 @@ class RegisterController extends Controller
 
         $data = $request->except('_token', 'password_confirmation');
 
-
         $action(
             $data['name'],
             $data['email'],
