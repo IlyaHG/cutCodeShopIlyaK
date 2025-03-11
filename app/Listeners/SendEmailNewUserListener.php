@@ -6,7 +6,7 @@ use App\Notifications\NewUserNotification;
 use Illuminate\Auth\Events\Registered;
 
 
-class SendEmailToNewUserListener
+class SendEmailNewUserListener
 {
 
     public function handle(Registered $event)

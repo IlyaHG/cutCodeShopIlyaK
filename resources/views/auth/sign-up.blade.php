@@ -2,6 +2,8 @@
 
 @section('title', 'Регистрация')
 @section('content')
+
+
     <x-forms.auth-forms title="Регистрация" action="{{route('register.handle')}}" method="POST">
 		@csrf
         <x-forms.text-input

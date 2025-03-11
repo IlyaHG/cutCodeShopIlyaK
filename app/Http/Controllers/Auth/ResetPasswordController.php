@@ -12,8 +12,6 @@ use Illuminate\Http\RedirectResponse;
 use Domain\Auth\Models\User;
 use Illuminate\Support\Facades\Password;
 
-
-
 class   ResetPasswordController extends Controller
 {
     public function page(string $token): Factory|View|Application
@@ -35,13 +33,12 @@ class   ResetPasswordController extends Controller
                 event(new PasswordReset($user));
             }
         );
-
         if ($status === Password::PASSWORD_RESET) {
             flash()->info(__($status));
-            return back();
+            return redirect()->route('login');
         }
 
-        return back()->withErrors(['email' => [__($status)]]);
+        return redirect()->route('login')->withErrors(['email' => [__($status)]]);
     }
 
 }

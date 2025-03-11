@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterFormRequest;
+use App\Http\Requests\SignUpFormRequest;
 use Domain\Auth\Contracts\RegisterNewUserContract;
 use Illuminate\Console\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 
 
 
-class RegisterController extends Controller
+class SignUpController extends Controller
 {
     public function page(): Factory|View|Application|RedirectResponse
     {
         // flash()->info('test');
-        return view("auth.register");
+        return view("auth.sign-up");
     }
 
-    public function handle(RegisterFormRequest $request, RegisterNewUserContract $action): RedirectResponse
+    public function handle(SignUpFormRequest $request, RegisterNewUserContract $action): RedirectResponse
     {
         // TODO DTOs
 
@@ -32,8 +32,7 @@ class RegisterController extends Controller
             $data['password']
         );
 
-        return redirect()->route('homePage');
-
+        return redirect()->route('home');
     }
 
 }

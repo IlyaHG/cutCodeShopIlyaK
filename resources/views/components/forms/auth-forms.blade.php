@@ -3,7 +3,7 @@
 
         <!-- Page heading -->
         <div class="text-center">
-            <a href="{{ route('homePage') }}" class="inline-block" rel="home">
+            <a href="{{ route('home') }}" class="inline-block" rel="home">
                 <img src="./images/logo.svg" class="w-[148px] md:w-[201px] h-[36px] md:h-[50px]" alt="CutCode">
             </a>
         </div>

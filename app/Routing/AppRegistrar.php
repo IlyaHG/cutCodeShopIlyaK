@@ -15,7 +15,7 @@ class AppRegistrar implements RouteRegistrar
     {
 
         Route::middleware('web')->group(function () {
-            Route::get('/', IndexController::class)->name('homePage');
+            Route::get('/', IndexController::class)->name('home');
 
             Route::get('/storage/images/{dir}/{method}/{size}/{file}')
                 ->where('method', 'resize|crop|fit')
