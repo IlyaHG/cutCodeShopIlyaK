@@ -4,8 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginFormRequest extends FormRequest
+class SignInFormRequest extends FormRequest
 {
+
+    public static string $factory = \Tests\RequestFactories\SignInFormRequestFactory::class;
 
     public function authorize()
     {

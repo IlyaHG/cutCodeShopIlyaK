@@ -2,11 +2,15 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Tests\RequestFactories\SignUpRequestFactory;
 
-class RegisterFormRequest extends FormRequest
+class SignUpFormRequest extends FormRequest
 {
+
+    public static $factory = SignUpRequestFactory::class;
 
 	/**
 	 * Determine if the user is authorized to make this request.

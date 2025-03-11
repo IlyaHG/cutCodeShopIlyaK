@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="flex flex-wrap lg:flex-nowrap items-center">
 				<div class="footer-logo order-0 basis-full sm:basis-1/2 lg:basis-1/3 shrink-0 text-center sm:text-left">
-					<a href="{{route('homePage')}}" class="inline-block" rel="home">
+					<a href="{{route('home')}}" class="inline-block" rel="home">
 						<img src="{{asset('storage/images/logo.svg')}}" class="w-[155px] h-[38px]" alt="CutCode">
 					</a>
 				</div><!-- /.footer-logo -->
@@ -29,7 +29,7 @@
         <div class="container">
             <div class="mmenu-heading flex items-center pt-6 xl:pt-12">
                 <div class="shrink-0 grow">
-                    <a href="{{route('homePage')}}" rel="home">
+                    <a href="{{route('home')}}" rel="home">
                         <img src="{{asset('storage/images/logo-dark.svg')}}" class="w-[148px] md:w-[201px] h-[36px] md:h-[50px]" alt="CutCode">
                     </a>
                 </div>
@@ -65,7 +65,7 @@
                     </a>
                 @endauth
                 <nav class="flex flex-col mt-8">
-                    <a href="{{route('homePage')}}" class="self-start py-1 text-dark hover:text-pink text-md font-bold">Главная</a>
+                    <a href="{{route('home')}}" class="self-start py-1 text-dark hover:text-pink text-md font-bold">Главная</a>
                     <a href="#" class="self-start py-1 text-dark hover:text-pink text-md font-bold">Каталог товаров</a>
                     <a href="#" class="self-start py-1 text-dark hover:text-pink text-md font-bold">Мои заказы</a>
                     <a href="#" class="self-start py-1 text-dark hover:text-pink text-md font-bold">Корзина</a>

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="header-inner flex items-center justify-between lg:justify-start">
                 <div class="header-logo shrink-0">
-                    <a href="{{route('homePage')}}" rel="home">
+                    <a href="{{route('home')}}" rel="home">
                         <img src="{{ asset('storage/images/logo.svg') }}"
 
 
@@ -26,7 +26,7 @@
                         </button>
                     </form>
                     <nav class="hidden 2xl:flex gap-8">
-                        <a href="{{route('homePage')}}" class="text-white hover:text-pink font-bold">Главная</a>
+                        <a href="{{route('home')}}" class="text-white hover:text-pink font-bold">Главная</a>
                         <a href="#" class="text-white hover:text-pink font-bold">Каталог товаров</a>
                         <a href="#" class="text-white hover:text-pink font-bold">Корзина</a>
                     </nav>

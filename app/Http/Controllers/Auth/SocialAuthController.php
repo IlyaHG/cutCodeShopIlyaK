@@ -33,16 +33,16 @@ class SocialAuthController extends Controller
 
 
         $user = User::query()->updateOrCreate([
-            $driver . '_id' => $githubUser->id,
+            $driver . '_id' => $githubUser->getId(),
         ], [
-            'name' => $githubUser->name ?? $githubUser->id,
+            'name' => $githubUser->getName() ?? $githubUser->getId(),
             'password' => bcrypt(str()->random(12)),
-            'email' => $githubUser->email,
+            'email' => $githubUser->getEmail(),
         ]);
 
         auth()->login($user);
 
-        return redirect()->intended(route('homePage'));
+        return redirect()->intended(route('home'));
     }
 
 }

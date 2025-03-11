@@ -16,7 +16,6 @@ class ForgotPasswordController extends Controller
 {
     public function page(): Factory|View|Application|RedirectResponse
     {
-        // flash()->info('test');
         return view("auth.forgot-password");
     }
 
@@ -29,7 +28,7 @@ class ForgotPasswordController extends Controller
 
         if ($status === Password::RESET_LINK_SENT) {
             flash()->info(__($status));
-            return back();
+            return redirect()->route("login");
         }
 
         return back()->withErrors(['email' => __($status)]);
