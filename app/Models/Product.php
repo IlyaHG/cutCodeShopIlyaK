@@ -18,13 +18,14 @@ class Product extends Model
 
 
 	protected $fillable = [
-		'user_id',
-		'category_id',
-		'slug',
-		'title',
-		'price',
-		'is_on_main_page',
-		'sorting'
+        'user_id',
+        'category_id',
+        'brand_id', // Добавляем brand_id
+        'slug',
+        'title',
+        'price',
+        'is_on_main_page',
+        'sorting'
 	];
 
     protected function thumbnailDir(): string
@@ -41,10 +42,9 @@ class Product extends Model
 		return $this->belongsTo(Brand::class);
 	}
 
-	public function scopeHomePage(Builder $query) {
-		$query->where('is_on_main_page', true)->orderBy('sorting')->limit(6);
-
-	}
+    public function scopeHomePage(Builder $query) {
+        return $query->where('is_on_main_page', true)->orderBy('sorting');
+    }
 
 
 }

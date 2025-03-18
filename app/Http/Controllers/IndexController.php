@@ -12,15 +12,15 @@ use Illuminate\Contracts\View\View;
 class IndexController extends Controller
 {
     public function __invoke(): Factory|View|Application
-	{
+    {
+        $categories = Category::query()->homePage()->get();
+        $products = Product::query()->homePage()->get();
+        $brands = Brand::query()->homePage()->get();
 
-		$categories = Category::query()->homePage()->get();
-		$products = Product::query()->homePage()->get();
-		$brands = Brand::query()->homePage()->get();
-
-		return view("index",compact(
-			'categories',
-			'products',
-			'brands'));
-	}
+        return view("index", compact(
+            'categories',
+            'products',
+            'brands'
+        ));
+    }
 }

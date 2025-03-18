@@ -1,5 +1,4 @@
 @extends('layout.layout')
-
 @section('content')
     <section>
         <!-- Section heading -->

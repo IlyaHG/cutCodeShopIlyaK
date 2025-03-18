@@ -10,6 +10,8 @@ use Illuminate\Database\Connection;
 use Illuminate\Support\Facades\DB;
 use App\Http\Kernel;
 use Illuminate\Validation\Rules\Password;
+use Services\Telegram\TelegramBotApi;
+use Services\Telegram\TelegramBotApiContract;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::shouldBeStrict(!app()->isProduction());
+
+        $this->app->bind(TelegramBotApiContract::class, TelegramBotApi::class);
 
         if (app()->isProduction()) {
             DB::whenQueryingForLongerThan(500, function (Connection $connection) {

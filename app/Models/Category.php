@@ -18,8 +18,8 @@ class Category extends Model
 	public function products(): BelongsToMany {
 		return $this->belongsToMany(Product::class);
 	}
-	public function scopeHomePage(Builder $query) {
-		$query->where('is_on_main_page', true)->orderBy('sorting')->limit(6);
+    public function scopeHomePage(Builder $query) {
+        return $query->where('is_on_main_page', true)->orderBy('sorting');
+    }
 
-	}
 }
