@@ -1,15 +1,13 @@
 <?php
 
-namespace Domain\Auth\Providers;
+namespace Domain\Catalog\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Domain\Auth\Actions\RegisterNewUserAction;
 use Domain\Auth\Contracts\RegisterNewUserContract;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class ActionsServiceProvider extends ServiceProvider
 {
-    public array $bindings = [
-        RegisterNewUserContract::class => RegisterNewUserAction::class
-    ];
+
 }

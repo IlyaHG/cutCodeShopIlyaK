@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\View\Composers\AppComposer;
-use App\View\Composers\ProductComposer;
+//use App\View\Composers\ProductComposer;
 use Illuminate\Support\ServiceProvider;
 use View;
 
@@ -26,6 +26,6 @@ class ViewServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-		View::composer(['*'], ProductComposer::class);
+//		View::composer(['*'], ProductComposer::class);
 	}
 }

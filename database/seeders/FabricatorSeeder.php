@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Domain\Catalog\Models\Category;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class FabricatorSeeder extends Seeder
 {

@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 
-use App\Routing\AppRegistrar;
 use App\Contracts\RouteRegistrar;
-use Domain\Auth\Routing\AuthRegistrar;
-use RuntimeException;
+use App\Routing\AppRegistrar;
+use App\Routing\AuthRegistrar;
+use App\Routing\CatalogRegistrar;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Routing\Registrar;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
+use RuntimeException;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -28,7 +28,8 @@ class RouteServiceProvider extends ServiceProvider
 
     protected array $registrars = [
         AppRegistrar::class,
-        AuthRegistrar::class
+        AuthRegistrar::class,
+        CatalogRegistrar::class,
     ];
 
     /**

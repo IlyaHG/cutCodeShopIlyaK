@@ -56,12 +56,9 @@ class HomeControllerTest extends TestCase
                     'sorting' => 999,
             ]);
 
-
-
-
         $this->get(action(IndexController::class))
             ->assertViewHas('categories.0', $category)
-//            ->assertViewHas('brands.0', $brand)
+            ->assertViewHas('brands.0', $brand)
             ->assertViewHas('products.0', $product);
     }
 }
