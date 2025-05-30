@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Scout\Searchable;
 use Support\Casts\PriceCast;
 use Support\Traits\Models\HasSlug;
 use Support\Traits\Models\HasThumbnail;
@@ -18,6 +19,7 @@ class Product extends Model
 	use HasFactory;
     use HasSlug;
     use HasThumbnail;
+    use Searchable;
 
 
 	protected $fillable = [
@@ -28,7 +30,8 @@ class Product extends Model
         'title',
         'price',
         'is_on_main_page',
-        'sorting'
+        'sorting',
+        'text'
 	];
     protected $casts = [
         'price' => PriceCast::class,
@@ -37,6 +40,21 @@ class Product extends Model
     protected function thumbnailDir(): string
     {
         return 'products';
+    }
+
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array<string, mixed>
+     */
+    #[SearchUsingFullText(['title'])]
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'text' => $this->text
+        ];
     }
     public function categories(): BelongsToMany
     {

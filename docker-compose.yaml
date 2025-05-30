@@ -19,6 +19,7 @@ services:
     ports:
       - 8080:9000
       - 5174:5174
+    user: "${UID}:${GID}"
 
   mysql_ilya:
     container_name: mysql_ilya

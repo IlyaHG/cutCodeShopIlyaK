@@ -7,14 +7,14 @@
                 <div class="header-logo shrink-0">
                     <a href="{{route('home')}}" rel="home">
                         <img src="{{ asset('storage/images/logo.svg') }}"
-
-
                         class="w-[120px] xs:w-[148px] md:w-[201px] h-[30px] xs:h-[36px] md:h-[50px]" alt="CutCode">
                     </a>
                 </div><!-- /.header-logo -->
                 <div class="header-menu grow hidden lg:flex items-center ml-8 mr-8 gap-8">
-                    <form class="hidden lg:flex gap-3">
+                    <form action="{{route('catalog')}}" class="hidden lg:flex gap-3">
                         <input type="search"
+                            name="s"
+                            value="{{request('s')}}"
                             class="w-full h-12 px-4 rounded-lg border border-body/10 focus:border-pink focus:shadow-[0_0_0_3px_#EC4176] bg-white/5 text-white text-xs shadow-transparent outline-0 transition"
                             placeholder="Поиск..." required>
                         <button type="submit" class="shrink-0 w-12 !h-12 !px-0 btn btn-pink">

@@ -36,6 +36,8 @@ down:
 	docker compose down
 up:
 	docker compose up -d
+	chmod +x fix-permissions.sh
+	./fix-permissions.sh
 
 dfresh:
 	-php artisan migrate:rollback
@@ -43,7 +45,7 @@ dfresh:
 	-php artisan db:seed
 
 test:
-	-php artisan test
+	-docker exec php_ilya php artisan test
 
 ser:
 	-php artisan serve

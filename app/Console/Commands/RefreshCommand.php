@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class RefreshCommand extends Command
 {
@@ -22,6 +22,8 @@ class RefreshCommand extends Command
         if (app()->isProduction()) {
             return self::FAILURE;
         }
+
+        $this->call('cache:clear');
 
         Storage::deleteDirectory('images/products');
         Storage::deleteDirectory('images/brands');
